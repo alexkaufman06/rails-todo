@@ -16,7 +16,8 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @list = List.find(params[:list_id])
+    @task = @list.tasks.find(params[:id])
   end
 
   def update
@@ -29,7 +30,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     @task = Task.find(params[:id])
     if @task.destroy
       flash[:alert] = "Task successfully deleted!"
