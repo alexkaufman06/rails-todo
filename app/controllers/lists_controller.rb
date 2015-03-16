@@ -8,7 +8,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(params[:list])
+    @list = List.new(list_params)
     if @list.save
       flash[:notice] = "List successfully saved!"
       redirect_to lists_path
@@ -27,7 +27,7 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-    if @list.update(params[:list])
+    if @list.update(list_params)
       flash[:notice] = "List successfully updated!"
       redirect_to lists_path
     else
